@@ -1,0 +1,72 @@
+<!-- DO NOT EDIT README.md (It will be overridden by README.hbs) -->
+
+# spinal-organ-network_export_sample
+
+Sample organ to demonstrate how to use the spinal-model-bmsnetwork.
+To retrive data from the Graph context network and export it to an JSON file.
+
+<!-- START doctoc -->
+<!-- END doctoc -->
+
+# Description
+
+This organ connect to the hub then search for the network.
+Once the network found it will start to get all de Devices (even the one nested).
+For each Device get their endpoint and data fron yesterday (mindnight to midnight J-1)
+
+The data in the `Graph Manager` will be as the following
+- Graph
+  - Network
+    - NetworkVirtual
+      - Device 1
+        - Device 1 child_1 - device
+          - Device 1 child_1_1 - groupendpoint
+            - Device 1 child_1_1_1 - endpoint
+        - Device 1 child_2 - groupendpoint
+          - Device 1 child_2_1 - endpoint
+        - Device 1 child_3 - endpoint
+      - ...
+
+
+# configuration
+Edit the file `config.json5` so the organ can connect to the server the be able to get the forgefile with it `path`.
+
+The organ will search for `organ.ContextType` and  `organ.networkType` then create it if not found.
+
+```js
+{
+  spinalConnector: {
+    user: 168, // user id - process.env.SPINAL_USER_ID
+    password: "JHGgcz45JKilmzknzelf65ddDadggftIO98P", // user password - process.env.SPINAL_USER_ID 
+    host: "localhost", // can be an ip address - process.env.SPINALHUB_IP
+    port: 7777 // port - process.env.SPINALHUB_PORT
+  },
+  file: {
+    // path to a digital twin in spinalhub filesystem || process.env.SPINAL_DTWIN_PATH
+    path: '/__users__/admin/deiv4' 
+  },
+  organ: {
+    contextName: "Network",
+    contextType: "Network",
+    networkType: "NetworkVirtual",
+  }
+}
+```
+
+# API
+
+## Interface
+
+<a name="ConfigOrgan"></a>
+
+### ConfigOrgan
+**Kind**: interface
+
+| Param | Type | Value | Comment |
+| --- | --- | --- | --- |
+| contextName | <code>string</code> | | 
+| contextType | <code>string</code> | | 
+| networkType | <code>string</code> | | 
+
+
+{{>main~}}
