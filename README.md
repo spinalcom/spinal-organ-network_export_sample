@@ -2,8 +2,7 @@
 
 # spinal-organ-network_export_sample
 
-Sample organ to demonstrate how to use the spinal-model-bmsnetwork.
-To retrive data from the Graph context network and export it to an JSON file.
+Sample organ to demonstrate how to use the `spinal-model-bmsnetwork` to retrive data from the Graph context network and export it to an JSON file.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -39,7 +38,8 @@ To retrive data from the Graph context network and export it to an JSON file.
 
 This organ connect to the hub then search for the network.
 Once the network found it will start to get all de Devices (even the one nested).
-For each Device get their endpoint and data fron yesterday (mindnight to midnight J-1)
+For each Device get their endpoint and data fron yesterday (mindnight to midnight J-1).
+Then finally write in a file the result.
 
 The data in the `Graph Manager` will be as the following
 - Graph
@@ -58,7 +58,7 @@ The data in the `Graph Manager` will be as the following
 # configuration
 Edit the file `config.json5` so the organ can connect to the server the be able to get the forgefile with it `path`.
 
-The organ will search for `organ.ContextType` and  `organ.networkType` then create it if not found.
+The organ will search for `organ.contextName` and `organ.networkType`.
 
 ```js
 {
